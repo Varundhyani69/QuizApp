@@ -1,0 +1,58 @@
+.container {
+    text-align: center;
+    gap: 15px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    margin-top: 5px;
+    height: 40px;
+    width: 300px;
+    border-radius: 20px;
+    padding: 0 15px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+}
+
+input:hover {
+    border: 1px solid #007bff;
+    outline: none;
+}
+
+button {
+    margin-top: 15px;
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: #007bff;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.error{
+    color: red;
+}
+
+select{
+    padding: 5px;
+    height: 35px;
+    width: 105px;
+    margin-top: 25px;
+    border-radius: 10px;
+    position: relative;
+    bottom: 3px;
+}

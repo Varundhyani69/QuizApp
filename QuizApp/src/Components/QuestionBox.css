@@ -1,0 +1,89 @@
+.container {
+    width: 100%;
+    text-align: center;
+    color: #333;
+}
+
+.qBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.qu {
+    width: 420px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ops {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.op {
+    color: #444;
+    font-weight: bold;
+    width: 400px;
+    height: 50px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.op:hover {
+    background-color: #e0f7fa;
+    border-color: #0288d1;
+}
+
+.correct {
+    border: 2px solid #4caf50;
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.wrong {
+    border: 2px solid #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+button {
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 25px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.btnn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

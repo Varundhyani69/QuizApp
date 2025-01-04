@@ -1,0 +1,14 @@
+.Container{
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+.reaction {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+  

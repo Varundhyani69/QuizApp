@@ -1,0 +1,19 @@
+h2 {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+.reaction.poor {
+    color: red;
+  }
+  
+.reaction.good {
+    color: orange;
+}
+  
+.reaction.amazing {
+    color: green;
+}
