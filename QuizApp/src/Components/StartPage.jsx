@@ -52,7 +52,7 @@ export default function StartPage({updateDifficulty, n, number, sub, q, updateQ 
             type="number"
             placeholder="Enter number of questions"
             max={100}
-            min={1}
+            min={5}
             className="num"
             value={n}
             onChange={(e) => number(parseInt(e.target.value) || 0)} 

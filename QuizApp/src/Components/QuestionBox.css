@@ -32,8 +32,9 @@
 .op {
     color: #444;
     font-weight: bold;
+    font-size: 15px;
     width: 400px;
-    height: 50px;
+    height: auto;
     border: 2px solid #ddd;
     border-radius: 10px;
     background-color: #f9f9f9;
@@ -42,6 +43,8 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    padding: 10px;
+
 }
 
 .op:hover {

@@ -74,6 +74,7 @@ function App() {
 
   return (
     <div className="App">
+      
       <Container updateDifficulty={updateDifficulty} number={number} n={n} genAns={genAns}  ans={ans} updateQ={updateQ}/>
     </div>
   );

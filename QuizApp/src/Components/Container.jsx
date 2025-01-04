@@ -49,7 +49,10 @@ export default function Container({updateDifficulty,n,number, genAns, ans, q, up
   }
 
   return (
+    <>
+    <h1 className='head'>Quiz App</h1>
     <div className="Container">
+      
       {!subm ? (
         <StartPage updateDifficulty={updateDifficulty}  n={n} number={number} q={q} sub={sub} updateQ={updateQ} />
       ) : !scorePage ? (
@@ -60,5 +63,7 @@ export default function Container({updateDifficulty,n,number, genAns, ans, q, up
         <StartPage updateDifficulty={updateDifficulty} n={n} q={q} sub={sub} updateQ={updateQ} />
       )}
     </div>
+    </>
+    
   );
 }
