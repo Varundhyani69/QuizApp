@@ -14,10 +14,10 @@ export default function Container({updateDifficulty,n,number, genAns, ans, q, up
   
   useEffect(() => {
     if (scorePage) {
-      if (score <= 5) {
+      if (score <= (50*n/100)) {
         setReaction(`Try Again! You just scored ${score}/${n}`);
         setReactionClass("poor");
-      } else if (score > 5 && score < 8) {
+      } else if (score > (50*n/100) && score < (80*n/100)) {
         setReaction(`Good! You scored ${score}/${n}`);
         setReactionClass("good");
       } else {
