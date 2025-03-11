@@ -30,6 +30,7 @@ function App() {
                   text: `Based on the topic ${q} give me ${n} mcq with 4 options along with answer with ${difficulty} difficulty level without any extra explanation or text stored in an object in this way:
                   [
                     {
+                      QuestionNumber: "1",
                       Question: "whatever question is",
                       O1: "option 1",
                       O2: "option 2",
@@ -38,13 +39,14 @@ function App() {
                       Ans: "1" // correct option number only
                     },
                     {
+                      Question number: "2",
                       Question: "whatever question is",
                       O1: "option 1",
                       O2: "option 2",
                       O3: "option 3",
                       O4: "option 4",
                       Ans: "2"
-                    }, //same goes for rest 8
+                    }, //same goes for rest
                   ]
                   `
                 }

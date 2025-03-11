@@ -15,18 +15,28 @@ export default function QuestionBox({n,updateScore, finish, ans, genAns}) {
     }
 
     function check(e, option) {
-        if (lock === false) {
+        if (!lock) {
             const selectedLi = e.target;
             clearAllClasses();
-            if (ans[currentIndex].Ans === option.toString()) {
+            const correctAnswer = ans[currentIndex].Ans;
+            
+            if (correctAnswer === option.toString()) {
                 updateScore();
                 selectedLi.classList.add("correct");
             } else {
                 selectedLi.classList.add("wrong");
+                
+                const allOptions = document.querySelectorAll('.op');
+                allOptions.forEach(optionEl => {
+                    if (optionEl.textContent === ans[currentIndex][`O${correctAnswer}`]) {
+                        optionEl.classList.add("correct");
+                    }
+                });
             }
             setLock(true);
         }
     }
+
 
     function clearAllClasses() {
         const allOptions = document.querySelectorAll('.op');
@@ -37,8 +47,10 @@ export default function QuestionBox({n,updateScore, finish, ans, genAns}) {
 
     return (
         <div className="container">
+
             {ans.length > 0 ? (
                 <div className="qBox">
+                    <p className="Num">{ans[currentIndex].QuestionNumber}</p>
                     <p className="qu"><strong>Question:</strong> {ans[currentIndex].Question}</p>
                     <ul className="ops">
                         <li onClick={(e) => check(e, 1)} className="op">{ans[currentIndex].O1}</li>
