@@ -51,28 +51,22 @@ export default function QuestionBox({ n, updateScore, finish, ans, genAns }) {
         <div className="qBox">
           <p className="Num">{ans[currentIndex].QuestionNumber}</p>
           
-          {ans[currentIndex].Question.includes("∫") ? (
-            <MathJax>
-              {`\\[ \\text{Question: Evaluate } \\int\\limits_{1}^{e} \\frac{1}{x} \\, dx \\]`}
-            </MathJax>
-          ) : (
-            <p className="qu">
-              <strong>Question:</strong> {ans[currentIndex].Question}
-            </p>
-          )}
+          <MathJax>
+            {`\\[${ans[currentIndex].Question}\\]`}
+          </MathJax>
 
           <ul className="ops">
             <li onClick={(e) => check(e, 1)} className="op">
-              {ans[currentIndex].O1}
+              <MathJax>{`\\(${ans[currentIndex].O1}\\)`}</MathJax>
             </li>
             <li onClick={(e) => check(e, 2)} className="op">
-              {ans[currentIndex].O2}
+              <MathJax>{`\\(${ans[currentIndex].O2}\\)`}</MathJax>
             </li>
             <li onClick={(e) => check(e, 3)} className="op">
-              {ans[currentIndex].O3}
+              <MathJax>{`\\(${ans[currentIndex].O3}\\)`}</MathJax>
             </li>
             <li onClick={(e) => check(e, 4)} className="op">
-              {ans[currentIndex].O4}
+              <MathJax>{`\\(${ans[currentIndex].O4}\\)`}</MathJax>
             </li>
           </ul>
           {currentIndex !== -1 && (
