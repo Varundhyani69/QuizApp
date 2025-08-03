@@ -1,95 +1,81 @@
-import { useState } from 'react';
-import './App.css';
-import axios from 'axios';
+import { useState } from "react";
+import "./App.css";
+import axios from "axios";
 import Container from "./Components/Container.jsx";
 
 function App() {
-  let [q, setQ] = useState("");
-  const [ans, setAns] = useState([]); 
-  let [n, setN] = useState(5);
-
-  function updateQ(topic) {
-    setQ(topic);
-  }
-
-  function number(p) {
-    setN(p);
-  }
-
+  const [topic, setTopic] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [numQuestions, setNumQuestions] = useState(5);
   const [difficulty, setDifficulty] = useState("medium");
+  const [loading, setLoading] = useState(false);
 
-  function updateDifficulty(d) {
-    setDifficulty(d);
-  }
+  const updateTopic = (value) => setTopic(value);
+  const updateQuestionCount = (value) => setNumQuestions(value);
+  const updateDifficultyLevel = (level) => setDifficulty(level);
 
-  async function genAns() {
+  const generateQuestions = async () => {
+    if (!import.meta.env.VITE_GEMINI_API) {
+      alert("API key not found. Please configure VITE_GEMINI_API in your .env file.");
+      return;
+    }
+
+    setLoading(true);
     try {
-      const res = await axios({
-        url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDqr8DHMpw5gn9o4S1PIiVjacZ1OS85TeI",
-        method: "post",
-        data: {
-          contents: [
-            {
-              parts: [
-                {
-                  text: `Based on the topic ${q}, generate ${n} multiple-choice questions (MCQs) with 4 options each, along with the correct answer, at a ${difficulty} difficulty level. Format all mathematical expressions in proper LaTeX syntax (e.g., use \\int for integrals, \\frac for fractions). Store the output in a JSON array as follows, without any extra explanation or text outside the array:
-                  [
-                    {
-                      QuestionNumber: "1",
-                      Question: "LaTeX formatted question, e.g., \\\\int_0^1 x^2 \\\\, dx",
-                      O1: "option 1",
-                      O2: "option 2",
-                      O3: "option 3",
-                      O4: "option 4",
-                      Ans: "1"
-                    },
-                    {
-                      QuestionNumber: "2",
-                      Question: "Another LaTeX formatted question",
-                      O1: "option 1",
-                      O2: "option 2",
-                      O3: "option 3",
-                      O4: "option 4",
-                      Ans: "2"
-                    }
-                  ]`
-                }
-              ]
-            }
-          ]
-        }
+      const response = await axios.post(import.meta.env.VITE_GEMINI_API, {
+        contents: [
+          {
+            parts: [
+              {
+                text: `Based on the topic ${topic}, generate ${numQuestions} multiple-choice questions (MCQs) with 4 options each, along with the correct answer, at a ${difficulty} difficulty level. Format all mathematical expressions in proper LaTeX syntax (e.g., use \\int for integrals, \\frac for fractions). Store the output in a JSON array as follows, without any extra explanation or text outside the array:
+                [
+                  {
+                    QuestionNumber: "1",
+                    Question: "LaTeX formatted question, e.g., \\\\int_0^1 x^2 \\\\, dx",
+                    O1: "option 1",
+                    O2: "option 2",
+                    O3: "option 3",
+                    O4: "option 4",
+                    Ans: "1"
+                  },
+                  ...
+                ]`
+              }
+            ]
+          }
+        ]
       });
 
-      const responseText = res.data.candidates[0].content.parts[0].text.trim();
-      console.log("Raw API response:", responseText);
-
+      const responseText = response.data?.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
       const jsonStart = responseText.indexOf("[");
       const jsonEnd = responseText.lastIndexOf("]") + 1;
       const jsonString = responseText.slice(jsonStart, jsonEnd);
 
       try {
-        const newMCQ = JSON.parse(jsonString);
-        setAns(prev => [...prev, ...newMCQ]);
-      } catch (parseErr) {
-        console.error("JSON parsing error:", parseErr);
-        alert("There was an error parsing the questions. Try again or simplify the input.");
+        const parsedQuestions = JSON.parse(jsonString);
+        setQuestions((prev) => [...prev, ...parsedQuestions]);
+      } catch (err) {
+        console.error("JSON parse error:", err);
+        alert("Failed to parse question data. Try again with a simpler topic.");
       }
-
-    } catch (error) {
-      console.error("Error generating answer:", error);
-      alert("Failed to fetch questions. Please check your internet connection or try again.");
+    } catch (err) {
+      console.error("Error fetching from Gemini API:", err);
+      alert("Could not generate questions. Check your network or API configuration.");
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="App">
       <Container
-        updateDifficulty={updateDifficulty}
-        number={number}
-        n={n}
-        genAns={genAns}
-        ans={ans}
-        updateQ={updateQ}
+        updateDifficulty={updateDifficultyLevel}
+        number={updateQuestionCount}
+        n={numQuestions}
+        genAns={generateQuestions}
+        ans={questions}
+        updateQ={updateTopic}
+        loading={loading}
       />
     </div>
   );

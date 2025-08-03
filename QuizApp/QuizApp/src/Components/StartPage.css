@@ -43,11 +43,11 @@ button:hover {
     background: #0056b3;
 }
 
-.error{
+.error {
     color: red;
 }
 
-select{
+select {
     padding: 5px;
     height: 35px;
     width: 105px;
@@ -55,4 +55,9 @@ select{
     border-radius: 10px;
     position: relative;
     bottom: 3px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

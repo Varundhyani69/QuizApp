@@ -6,14 +6,15 @@ h2 {
     padding: 20px;
     text-align: center;
 }
+
 .reaction.poor {
     color: red;
-  }
-  
+}
+
 .reaction.good {
     color: orange;
 }
-  
+
 .reaction.amazing {
     color: green;
 }

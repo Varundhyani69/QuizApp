@@ -5,7 +5,7 @@ import QuestionBox from "./QuestionBox";
 import ScorePage from "./scorePage.jsx";
 import { MathJax, MathJaxContext } from "better-react-mathjax";
 
-export default function Container({ updateDifficulty, n, number, genAns, ans, q, updateQ }) {
+export default function Container({ updateDifficulty, n, number, genAns, ans, q, updateQ, loading }) {
   const [subm, setSubm] = useState(false);
   const [scorePage, setScorePage] = useState(false);
   const [score, setScore] = useState(0);
@@ -87,6 +87,7 @@ export default function Container({ updateDifficulty, n, number, genAns, ans, q,
               q={q}
               sub={sub}
               updateQ={updateQ}
+              loading={loading}
             />
           )}
         </div>

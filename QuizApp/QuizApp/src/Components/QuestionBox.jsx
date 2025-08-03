@@ -50,7 +50,7 @@ export default function QuestionBox({ n, updateScore, finish, ans, genAns }) {
       {ans.length > 0 ? (
         <div className="qBox">
           <p className="Num">{ans[currentIndex].QuestionNumber}</p>
-          
+
           <MathJax>
             {`\\[${ans[currentIndex].Question}\\]`}
           </MathJax>
